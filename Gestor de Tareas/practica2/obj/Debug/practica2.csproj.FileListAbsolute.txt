@@ -1,0 +1,22 @@
+D:\ProgramacionVisual\practica2\practica2\obj\Debug\practica2.csproj.AssemblyReference.cache
+D:\ProgramacionVisual\practica2\practica2\obj\Debug\practica2.Form1.resources
+D:\ProgramacionVisual\practica2\practica2\obj\Debug\practica2.Properties.Resources.resources
+D:\ProgramacionVisual\practica2\practica2\obj\Debug\practica2.csproj.GenerateResource.cache
+D:\ProgramacionVisual\practica2\practica2\obj\Debug\practica2.csproj.CoreCompileInputs.cache
+D:\ProgramacionVisual\practica2\practica2\bin\Debug\practica2.exe.config
+D:\ProgramacionVisual\practica2\practica2\bin\Debug\practica2.exe
+D:\ProgramacionVisual\practica2\practica2\bin\Debug\practica2.pdb
+D:\ProgramacionVisual\practica2\practica2\obj\Debug\practica2.exe
+D:\ProgramacionVisual\practica2\practica2\obj\Debug\practica2.pdb
+D:\ProgramacionVisual\practica2\practica2\obj\Debug\practica2.exe.config
+C:\Users\rodri\Documents\UNAN\Programación Visual\Gestor de Tareas\practica2\bin\Debug\practica2.exe.config
+C:\Users\rodri\Documents\UNAN\Programación Visual\Gestor de Tareas\practica2\bin\Debug\practica2.exe
+C:\Users\rodri\Documents\UNAN\Programación Visual\Gestor de Tareas\practica2\bin\Debug\practica2.pdb
+C:\Users\rodri\Documents\UNAN\Programación Visual\Gestor de Tareas\practica2\obj\Debug\practica2.csproj.AssemblyReference.cache
+C:\Users\rodri\Documents\UNAN\Programación Visual\Gestor de Tareas\practica2\obj\Debug\practica2.exe.config
+C:\Users\rodri\Documents\UNAN\Programación Visual\Gestor de Tareas\practica2\obj\Debug\practica2.Form1.resources
+C:\Users\rodri\Documents\UNAN\Programación Visual\Gestor de Tareas\practica2\obj\Debug\practica2.Properties.Resources.resources
+C:\Users\rodri\Documents\UNAN\Programación Visual\Gestor de Tareas\practica2\obj\Debug\practica2.csproj.GenerateResource.cache
+C:\Users\rodri\Documents\UNAN\Programación Visual\Gestor de Tareas\practica2\obj\Debug\practica2.csproj.CoreCompileInputs.cache
+C:\Users\rodri\Documents\UNAN\Programación Visual\Gestor de Tareas\practica2\obj\Debug\practica2.exe
+C:\Users\rodri\Documents\UNAN\Programación Visual\Gestor de Tareas\practica2\obj\Debug\practica2.pdb

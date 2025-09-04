@@ -93,6 +93,7 @@
             // BtLogin
             // 
             BtLogin.BackColor = Color.Black;
+            BtLogin.Font = new Font("Rockwell", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             BtLogin.ForeColor = SystemColors.ButtonHighlight;
             BtLogin.Location = new Point(144, 306);
             BtLogin.Margin = new Padding(4);
@@ -115,11 +116,11 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Font = new Font("Arial Narrow", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label3.Font = new Font("Bell MT", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label3.Location = new Point(76, 194);
             label3.Margin = new Padding(4, 0, 4, 0);
             label3.Name = "label3";
-            label3.Size = new Size(84, 22);
+            label3.Size = new Size(95, 22);
             label3.TabIndex = 3;
             label3.Text = "Contraseña";
             // 
@@ -135,24 +136,25 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Font = new Font("Arial Narrow", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label2.Font = new Font("Bell MT", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label2.Location = new Point(76, 116);
             label2.Margin = new Padding(4, 0, 4, 0);
             label2.Name = "label2";
-            label2.Size = new Size(60, 22);
+            label2.Size = new Size(69, 22);
             label2.TabIndex = 1;
             label2.Text = "Usuario";
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("Impact", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label1.Font = new Font("Ink Free", 15.9999981F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
             label1.Location = new Point(144, 26);
             label1.Margin = new Padding(4, 0, 4, 0);
             label1.Name = "label1";
-            label1.Size = new Size(191, 41);
+            label1.Size = new Size(196, 39);
             label1.TabIndex = 0;
             label1.Text = "Login Simple";
+            label1.Click += label1_Click;
             // 
             // tabPage2
             // 
@@ -195,13 +197,14 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Font = new Font("Arial Narrow", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label4.Font = new Font("Bell MT", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label4.Location = new Point(82, 195);
             label4.Margin = new Padding(4, 0, 4, 0);
             label4.Name = "label4";
-            label4.Size = new Size(150, 22);
+            label4.Size = new Size(173, 22);
             label4.TabIndex = 9;
             label4.Text = "Ingrese su peso en kg";
+            label4.Click += label4_Click;
             // 
             // TbAltura
             // 
@@ -214,22 +217,22 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Font = new Font("Arial Narrow", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label5.Font = new Font("Bell MT", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label5.Location = new Point(82, 116);
             label5.Margin = new Padding(4, 0, 4, 0);
             label5.Name = "label5";
-            label5.Size = new Size(183, 22);
+            label5.Size = new Size(215, 22);
             label5.TabIndex = 7;
             label5.Text = "Ingrese su altura en metros";
             // 
             // label6
             // 
             label6.AutoSize = true;
-            label6.Font = new Font("Impact", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label6.Font = new Font("Ink Free", 15.9999981F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
             label6.Location = new Point(92, 29);
             label6.Margin = new Padding(4, 0, 4, 0);
             label6.Name = "label6";
-            label6.Size = new Size(281, 41);
+            label6.Size = new Size(299, 39);
             label6.TabIndex = 6;
             label6.Text = "Calculadora de IMC";
             // 
@@ -243,25 +246,27 @@
             tabPage3.Location = new Point(4, 34);
             tabPage3.Margin = new Padding(4);
             tabPage3.Name = "tabPage3";
-            tabPage3.Size = new Size(575, 402);
+            tabPage3.Size = new Size(493, 402);
             tabPage3.TabIndex = 2;
             tabPage3.Text = "Conversor";
             tabPage3.UseVisualStyleBackColor = true;
             // 
             // CbConversion
             // 
+            CbConversion.Font = new Font("SimSun", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             CbConversion.FormattingEnabled = true;
             CbConversion.Items.AddRange(new object[] { "Celcius a Farenheit", "Farenheit a Celcius" });
             CbConversion.Location = new Point(55, 92);
             CbConversion.Margin = new Padding(4);
             CbConversion.Name = "CbConversion";
-            CbConversion.Size = new Size(378, 33);
+            CbConversion.Size = new Size(378, 26);
             CbConversion.TabIndex = 18;
             CbConversion.Text = "Seleccione su tipo de conversion";
             // 
             // BtConvertir
             // 
             BtConvertir.BackColor = Color.Black;
+            BtConvertir.Font = new Font("SimSun", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             BtConvertir.ForeColor = SystemColors.ButtonHighlight;
             BtConvertir.Location = new Point(138, 316);
             BtConvertir.Margin = new Padding(4);
@@ -284,22 +289,22 @@
             // label7
             // 
             label7.AutoSize = true;
-            label7.Font = new Font("Arial Narrow", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label7.Font = new Font("Bell MT", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label7.Location = new Point(152, 181);
             label7.Margin = new Padding(4, 0, 4, 0);
             label7.Name = "label7";
-            label7.Size = new Size(153, 22);
+            label7.Size = new Size(180, 22);
             label7.TabIndex = 15;
             label7.Text = "Ingrese la temperatura";
             // 
             // label9
             // 
             label9.AutoSize = true;
-            label9.Font = new Font("Impact", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label9.Font = new Font("Ink Free", 15.9999981F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
             label9.Location = new Point(54, 27);
             label9.Margin = new Padding(4, 0, 4, 0);
             label9.Name = "label9";
-            label9.Size = new Size(379, 41);
+            label9.Size = new Size(408, 39);
             label9.TabIndex = 12;
             label9.Text = "Conversor de Temperatura";
             label9.Click += label9_Click;
@@ -312,7 +317,7 @@
             tabPage4.Location = new Point(4, 34);
             tabPage4.Margin = new Padding(4);
             tabPage4.Name = "tabPage4";
-            tabPage4.Size = new Size(575, 402);
+            tabPage4.Size = new Size(493, 402);
             tabPage4.TabIndex = 3;
             tabPage4.Text = "Contador";
             tabPage4.UseVisualStyleBackColor = true;
@@ -321,6 +326,7 @@
             // BtReset
             // 
             BtReset.BackColor = Color.DarkGray;
+            BtReset.Font = new Font("SimSun", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             BtReset.ForeColor = SystemColors.ButtonHighlight;
             BtReset.Location = new Point(280, 210);
             BtReset.Margin = new Padding(4);
@@ -334,6 +340,7 @@
             // BtClick
             // 
             BtClick.BackColor = Color.Black;
+            BtClick.Font = new Font("SimSun", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             BtClick.ForeColor = SystemColors.ButtonHighlight;
             BtClick.Location = new Point(92, 210);
             BtClick.Margin = new Padding(4);
@@ -347,11 +354,11 @@
             // Display
             // 
             Display.AutoSize = true;
-            Display.Font = new Font("Impact", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            Display.Font = new Font("Ink Free", 15.9999981F, FontStyle.Bold, GraphicsUnit.Point, 0);
             Display.Location = new Point(236, 91);
             Display.Margin = new Padding(4, 0, 4, 0);
             Display.Name = "Display";
-            Display.Size = new Size(36, 41);
+            Display.Size = new Size(36, 39);
             Display.TabIndex = 0;
             Display.Text = "0";
             Display.Click += Display_Click;
