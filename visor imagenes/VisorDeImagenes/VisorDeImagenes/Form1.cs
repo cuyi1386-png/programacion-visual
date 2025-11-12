@@ -1,0 +1,276 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.IO;
+using System.Windows.Forms;
+
+namespace VisorDeImagenes
+{
+    public partial class Form1 : Form
+    {
+        string carpeta = @"C:\Users\rodri\Documents\UNAN\Programación Visual\Semana 4\source";
+        List<string> listaImagenes = new List<string>();
+        int indiceActual = -1;
+ 
+        private bool modoGris = false;
+        private bool sincronizando = false;
+
+        public Form1()
+        {
+            InitializeComponent();
+            CargarImagenes();
+
+            toolStripButton1.CheckOnClick = true; 
+            toolStripButton2.CheckOnClick = true;
+
+            girar90ALaDerechaToolStripMenuItem.Click += rotarDerecha_Click;
+            girar90ALaIzquierdaToolStripMenuItem1.Click += rotarIzquierda_Click;
+            copiarToolStripMenuItem.Click += copiar_Click;
+
+            // ToolStripButtons (normal / grises)
+            toolStripButton1.Click += toolStripButton1_Click; // Normal
+            toolStripButton2.Click += toolStripButton2_Click; // Grises
+
+            checkBox1.Click += (s, e) => SetMode(false); // Normal
+            checkBox2.Click += (s, e) => SetMode(true);  // Escala de grises
+
+            // MenuStrip items (si existen)
+            normalToolStripMenuItem.Click += (s, e) => SetMode(false);
+            escalaDeGrisesToolStripMenuItem.Click += (s, e) => SetMode(true);
+
+            pictureBox1.Paint += pictureBox1_Paint;
+        }
+
+        private void CargarImagenes()
+        {
+            string[] extensiones = { "*.jpg", "*.png", "*.jpeg", "*.bmp", "*.gif" };
+
+            foreach (var ext in extensiones)
+            {
+                string[] archivos = Directory.GetFiles(carpeta, ext);
+                foreach (var archivo in archivos)
+                {
+                    listaImagenes.Add(archivo);
+                    comboBox1.Items.Add(Path.GetFileName(archivo));
+                }
+            }
+
+            if (listaImagenes.Count > 0)
+            {
+                SetMode(false); 
+                MostrarImagen(0);
+            }
+        }
+
+        private void MostrarImagen(int indice)
+        {
+            if (indice < 0 || indice >= listaImagenes.Count) return;
+
+            indiceActual = indice;
+            string archivoSeleccionado = listaImagenes[indice];
+
+            if (pictureBox1.Image != null)
+            {
+                var prev = pictureBox1.Image;
+                pictureBox1.Image = null;
+                prev.Dispose();
+            }
+
+            using (var temp = Image.FromFile(archivoSeleccionado))
+            {
+                Image original = new Bitmap(temp);
+
+                if (modoGris)
+                    pictureBox1.Image = ConvertirAGris(original);
+                else
+                    pictureBox1.Image = new Bitmap(original);
+
+                original.Dispose();
+            }
+
+            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+            comboBox1.SelectedIndex = indice;
+            toolStripStatusLabel1.Text = archivoSeleccionado;
+        }
+
+        private Bitmap ConvertirAGris(Image original)
+        {
+            var src = new Bitmap(original);
+            Bitmap bmp = new Bitmap(src.Width, src.Height);
+
+            for (int y = 0; y < src.Height; y++)
+            {
+                for (int x = 0; x < src.Width; x++)
+                {
+                    Color pixel = src.GetPixel(x, y);
+                    int gris = (pixel.R + pixel.G + pixel.B) / 3;
+                    bmp.SetPixel(x, y, Color.FromArgb(gris, gris, gris));
+                }
+            }
+
+            src.Dispose();
+            return bmp;
+        }
+
+        private void SetMode(bool gris)
+        {
+            if (sincronizando) return;
+
+            sincronizando = true;
+            modoGris = gris;
+
+            checkBox2.Checked = gris;   
+            checkBox1.Checked = !gris;  
+
+            toolStripButton2.Checked = gris;
+            toolStripButton1.Checked = !gris;
+
+            if (this.normalToolStripMenuItem != null)
+                normalToolStripMenuItem.Checked = !gris;
+            if (this.escalaDeGrisesToolStripMenuItem != null)
+                escalaDeGrisesToolStripMenuItem.Checked = gris;
+
+            if (indiceActual >= 0)
+                MostrarImagen(indiceActual);
+
+            sincronizando = false;
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            MostrarImagen(comboBox1.SelectedIndex);
+        }
+
+        private void btnAnterior_Click(object sender, EventArgs e)
+        {
+            if (indiceActual > 0) MostrarImagen(indiceActual - 1);
+        }
+
+        private void btnSiguiente_Click(object sender, EventArgs e)
+        {
+            if (indiceActual < listaImagenes.Count - 1) MostrarImagen(indiceActual + 1);
+        }
+
+        private void btnInicio_Click(object sender, EventArgs e)
+        {
+            MostrarImagen(0);
+        }
+
+        private void btnFinal_Click(object sender, EventArgs e)
+        {
+            MostrarImagen(listaImagenes.Count - 1);
+        }
+
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+            SetMode(false);
+        }
+
+        private void toolStripButton2_Click(object sender, EventArgs e)
+        {
+            SetMode(toolStripButton2.Checked);
+        }
+
+        private void rotarIzquierda_Click(object sender, EventArgs e)
+        {
+            if (pictureBox1.Image == null) return;
+            pictureBox1.Image.RotateFlip(RotateFlipType.Rotate270FlipNone);
+            pictureBox1.Refresh();
+        }
+
+        private void rotarDerecha_Click(object sender, EventArgs e)
+        {
+            if (pictureBox1.Image == null) return;
+            pictureBox1.Image.RotateFlip(RotateFlipType.Rotate90FlipNone);
+            pictureBox1.Refresh();
+        }
+
+        private void copiar_Click(object sender, EventArgs e)
+        {
+            if (pictureBox1.Image != null)
+            {
+                Clipboard.SetImage(pictureBox1.Image);
+                MessageBox.Show("Imagen copiada en el portapapeles.");
+            }
+        }
+
+        private void checkBox3_Click(object sender, EventArgs e)
+        {
+            checkBox4.Checked = false;
+            checkBox5.Checked = false;
+
+            pictureBox1.SizeMode = PictureBoxSizeMode.Normal;
+            pictureBox1.Invalidate();
+        }
+
+        private void checkBox4_Click(object sender, EventArgs e)
+        {
+            checkBox3.Checked = false;
+            checkBox5.Checked = false;
+
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox1.Invalidate();
+        }
+
+        private void checkBox5_Click(object sender, EventArgs e)
+        {
+            checkBox3.Checked = false;
+            checkBox4.Checked = false;
+
+            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox1.Invalidate();
+        }
+
+        private void toolStripButtonGuardar_Click(object sender, EventArgs e)
+        {
+            if (pictureBox1.Image == null)
+            {
+                MessageBox.Show("No hay ninguna imagen para guardar.");
+                return;
+            }
+
+            using (SaveFileDialog saveFileDialog = new SaveFileDialog())
+            {
+                saveFileDialog.Title = "Guardar imagen";
+                saveFileDialog.Filter = "Imagen JPG|*.jpg|Imagen PNG|*.png|Bitmap|*.bmp";
+                saveFileDialog.FileName = "miImagen";
+
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    var formato = System.Drawing.Imaging.ImageFormat.Png;
+
+                    switch (saveFileDialog.FilterIndex)
+                    {
+                        case 1: formato = System.Drawing.Imaging.ImageFormat.Jpeg; break;
+                        case 2: formato = System.Drawing.Imaging.ImageFormat.Png; break;
+                        case 3: formato = System.Drawing.Imaging.ImageFormat.Bmp; break;
+                    }
+
+                    pictureBox1.Image.Save(saveFileDialog.FileName, formato);
+                    MessageBox.Show("Imagen guardada en:\n" + saveFileDialog.FileName);
+                }
+            }
+        }
+
+        private void toolStripButtonSalir_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void pictureBox1_Paint(object sender, PaintEventArgs e)
+        {
+            if (pictureBox1.Image != null && pictureBox1.SizeMode == PictureBoxSizeMode.Normal)
+            {
+                int x = (pictureBox1.Width - pictureBox1.Image.Width) / 2;
+                int y = (pictureBox1.Height - pictureBox1.Image.Height) / 2;
+                e.Graphics.Clear(pictureBox1.BackColor);
+                e.Graphics.DrawImage(pictureBox1.Image, x, y);
+            }
+        }
+
+        private void groupBox2_Enter(object sender, EventArgs e)
+        {
+
+        }
+    }
+}
